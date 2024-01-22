@@ -7,6 +7,16 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "theredhead.remoting", "ther
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "theredhead.remoting.tests", "theredhead.remoting.tests\theredhead.remoting.tests.csproj", "{A67B11DD-35F3-4AF8-9BAE-036372C1B973}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "theredhead.text", "theredhead.text\theredhead.text.csproj", "{BD7FD48C-398F-4842-9235-0BABD731C084}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "theredhead.text.tests", "theredhead.text.tests\theredhead.text.tests.csproj", "{FC7CE8D2-8C27-4ABB-B95B-2DAAFC4A6A96}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "theredhead.data", "theredhead.data\theredhead.data.csproj", "{9FE8B0B9-059B-4A0A-9F8C-8BFCBCF49C1F}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "theredhead.data.sqlite", "theredhead.data.sqlite\theredhead.data.sqlite.csproj", "{0D586ABC-18F2-460D-AE81-FCC8C5C880F5}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "theredhead.data.sqlite.tests", "theredhead.data.sqlite.tests\theredhead.data.sqlite.tests.csproj", "{21FB23D5-4300-481A-B8E9-96CE17855E4D}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -21,6 +31,26 @@ Global
 		{A67B11DD-35F3-4AF8-9BAE-036372C1B973}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{A67B11DD-35F3-4AF8-9BAE-036372C1B973}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{A67B11DD-35F3-4AF8-9BAE-036372C1B973}.Release|Any CPU.Build.0 = Release|Any CPU
+		{BD7FD48C-398F-4842-9235-0BABD731C084}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{BD7FD48C-398F-4842-9235-0BABD731C084}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{BD7FD48C-398F-4842-9235-0BABD731C084}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{BD7FD48C-398F-4842-9235-0BABD731C084}.Release|Any CPU.Build.0 = Release|Any CPU
+		{FC7CE8D2-8C27-4ABB-B95B-2DAAFC4A6A96}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{FC7CE8D2-8C27-4ABB-B95B-2DAAFC4A6A96}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{FC7CE8D2-8C27-4ABB-B95B-2DAAFC4A6A96}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{FC7CE8D2-8C27-4ABB-B95B-2DAAFC4A6A96}.Release|Any CPU.Build.0 = Release|Any CPU
+		{9FE8B0B9-059B-4A0A-9F8C-8BFCBCF49C1F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9FE8B0B9-059B-4A0A-9F8C-8BFCBCF49C1F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9FE8B0B9-059B-4A0A-9F8C-8BFCBCF49C1F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9FE8B0B9-059B-4A0A-9F8C-8BFCBCF49C1F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{0D586ABC-18F2-460D-AE81-FCC8C5C880F5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0D586ABC-18F2-460D-AE81-FCC8C5C880F5}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0D586ABC-18F2-460D-AE81-FCC8C5C880F5}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0D586ABC-18F2-460D-AE81-FCC8C5C880F5}.Release|Any CPU.Build.0 = Release|Any CPU
+		{21FB23D5-4300-481A-B8E9-96CE17855E4D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{21FB23D5-4300-481A-B8E9-96CE17855E4D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{21FB23D5-4300-481A-B8E9-96CE17855E4D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{21FB23D5-4300-481A-B8E9-96CE17855E4D}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
