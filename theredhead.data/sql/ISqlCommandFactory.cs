@@ -6,10 +6,10 @@ namespace theredhead.data.sql;
 
 public interface ISqlCommandFactory
 {
-    IDbCommand CreateInsertCommand(string tableName, Dictionary<string, object> columnsAndValues);
-    IDbCommand CreateUpdateCommand(string tableName, Dictionary<string, object> key, Dictionary<string, object> columnsAndValues);
+    IDbCommand CreateInsertCommand(string tableName, Dictionary<string, object?> columnsAndValues);
+    IDbCommand CreateUpdateCommand(string tableName, Dictionary<string, object> key, Dictionary<string, object?> columnsAndValues);
     IDbCommand CreateDeleteCommand(string tableName, Dictionary<string, object> key);
-    IDbCommand CreateSelectCommand(string tableName, Dictionary<string, object> key, IEnumerable<string>? columns = null);
+    IDbCommand CreateSelectCommand(string tableName, Dictionary<string, object>? key, IEnumerable<string>? columns = null);
 }
 
 public interface ISqlCommandFactory<T> : ISqlCommandFactory where T: IDbConnection
@@ -32,7 +32,7 @@ public class BaseSqlCommandFactory<T>(T connection) : ISqlCommandFactory<T> wher
     {
         return parameterNameQuoteKind.Quote(objectName);
     }
-    private string ExpandWhereText(Dictionary<string, object> key)
+    private string ExpandWhereText(Dictionary<string, object>? key)
     {
         if (key == null || key.Count == 0) return "";
 
@@ -41,7 +41,7 @@ public class BaseSqlCommandFactory<T>(T connection) : ISqlCommandFactory<T> wher
 
     public IDbCommand CreateDeleteCommand(string tableName, Dictionary<string, object> key)
     {
-        var arguments = new CommandArguments();
+        var arguments = new CommandArguments(parameterNameQuoteKind, key);
         var quotedTableName = QuoteObjectName(tableName);
         var where = ExpandWhereText(key);
         var commandText = $"DELETE FROM {quotedTableName} {where}";
@@ -49,22 +49,29 @@ public class BaseSqlCommandFactory<T>(T connection) : ISqlCommandFactory<T> wher
         return Connection.CreateCommand(commandText, arguments);
     }
 
-    public IDbCommand CreateInsertCommand(string tableName, Dictionary<string, object> columnsAndValues)
+    public IDbCommand CreateInsertCommand(string tableName, Dictionary<string, object?> columnsAndValues)
     {
-        var arguments = new CommandArguments();
+        var arguments = new CommandArguments(parameterNameQuoteKind, columnsAndValues);
         var quotedTableName = QuoteObjectName(tableName);
-        var columnList = (columnsAndValues.Keys.Select(QuoteObjectName)).JoinedBy(", ");
-        var argumentList = (columnsAndValues.Keys.Select(ParameterName)).JoinedBy(", ");
+        var columnList = columnsAndValues.Keys.Select(QuoteObjectName).JoinedBy(", ");
+        var argumentList = columnsAndValues.Keys.Select(ParameterName).JoinedBy(", ");
         var commandText = $"INSERT INTO {quotedTableName} ({columnList}) VALUES {argumentList}";
 
         return Connection.CreateCommand(commandText, arguments);
     }
 
-    public IDbCommand CreateSelectCommand(string tableName, Dictionary<string, object> key, IEnumerable<string>? columns = null)
+    public IDbCommand CreateSelectCommand(string tableName, Dictionary<string, object>? key, IEnumerable<string>? columns = null)
     {
-        var arguments = new CommandArguments();
+        var arguments = key != null 
+            ? new CommandArguments(parameterNameQuoteKind, key) 
+            : new CommandArguments(parameterNameQuoteKind);
+        if (columns!= null) {
+            foreach(var column in columns) {
+                arguments[column] = column;
+            }
+        } 
         var quotedTableName = QuoteObjectName(tableName);
-        var columnList = (columns?.Select(QuoteObjectName) ?? new[] { "*" }).JoinedBy(", ");
+        var columnList = (columns?.Select(QuoteObjectName) ?? ["*"]).JoinedBy(", ");
         var where = ExpandWhereText(key);
         var commandText = $"SELECT {columnList} FROM {quotedTableName} {where}";
         return Connection.CreateCommand(commandText, arguments);
@@ -72,7 +79,7 @@ public class BaseSqlCommandFactory<T>(T connection) : ISqlCommandFactory<T> wher
 
     public IDbCommand CreateUpdateCommand(string tableName, Dictionary<string, object> key, Dictionary<string, object> columnsAndValues)
     {
-        var arguments = new CommandArguments();
+        var arguments = new CommandArguments(parameterNameQuoteKind, key, columnsAndValues);
         var quotedTableName = QuoteObjectName(tableName);
         var columnNames = columnsAndValues.Keys;
         var assignments = columnNames.Select(c => $"{QuoteObjectName(c)}={ParameterName(c)}");

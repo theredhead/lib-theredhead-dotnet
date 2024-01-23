@@ -11,6 +11,7 @@ public class SqliteConnectionTests
     public void Setup()
     {
     }
+    
     [Test]
     public void CanCreateAndOpenConnection()
     {
@@ -28,10 +29,11 @@ public class SqliteConnectionTests
         using var connection = new SqliteConnection("Datasource=:memory:");
         var command = connection.CreateCommand(
             "select * from sqlite_master where type = 'table'",
-            new()
-            {
-                { "answer", 42 }
-            }
+            new CommandArguments("@",
+                new Dictionary<string, object>() {
+                    { "answer", 42 }
+                }
+            )
         );
 
         Assert.That(command.Connection, Is.SameAs(connection), "Connection is different");
@@ -39,7 +41,7 @@ public class SqliteConnectionTests
         Assert.That(command.Parameters.Count, Is.EqualTo(1), "Wrong number of parameters");
         if(command.Parameters[0] is IDbDataParameter parameter)
         {
-            Assert.That(parameter.ParameterName, Is.EqualTo("answer"));
+            Assert.That(parameter.ParameterName, Is.EqualTo("@answer"));
             Assert.That(parameter.Value, Is.EqualTo(42));
         } else {
             Assert.Fail("Parameter is not of IDbDataParameterType");
@@ -52,5 +54,23 @@ public class SqliteConnectionTests
         var connection = new SqliteConnection("Datasource=:memory:");
         var factory = connection.GetCommandFactory();
         Assert.That(factory, Is.InstanceOf<SqliteCommandFactory>());
+    }
+
+    [Test]
+    public void CanSelectSomeData() {
+        var connection = new SqliteConnection("Datasource=:memory:");
+        connection.Open();
+        var table = connection.ExecuteDataTable("SELECT * FROM sqlite_master");
+        connection.Close();
+        Assert.That(table, Is.InstanceOf<DataTable>());
+    }
+    [Test]
+    public void CanSelectSomeDataThroughFactory() {
+        var connection = new SqliteConnection("Datasource=:memory:");
+        connection.Open();
+        var command = connection.GetCommandFactory().CreateSelectCommand("sqlite_master", null, ["type", "name"]);
+        var table = command.ExecuteDataTable();
+        connection.Close();
+        Assert.That(table, Is.InstanceOf<DataTable>());
     }
 }

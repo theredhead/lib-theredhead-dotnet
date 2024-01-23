@@ -17,6 +17,13 @@ namespace theredhead.text
 		{
             return prefix + subject + suffix;
         }
+        public string Unquote(string subject)
+		{
+            var startOffset = subject.StartsWith(prefix) ? prefix.Length : 0;
+            var endOffset = subject.EndsWith(suffix) ? suffix.Length : 0;
+
+            return subject.Substring(startOffset, subject.Length - startOffset - endOffset);
+        }
     }
 
 

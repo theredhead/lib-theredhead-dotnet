@@ -14,3 +14,8 @@ public class SqliteCommandFactory : BaseSqlCommandFactory<SqliteConnection>
     }
 }
 
+public static class SqliteConnectionExtensions {
+    public static SqliteCommandFactory GetCommandFactory(this SqliteConnection connection) {
+        return new SqliteCommandFactory(connection);
+    }
+}

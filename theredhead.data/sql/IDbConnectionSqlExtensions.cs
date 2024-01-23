@@ -9,12 +9,11 @@ public static class IDbConnectionSqlExtensions
 {
     public static ISqlCommandFactory GetCommandFactory(this IDbConnection connection)
     {
-        return switch (connection.GetType().FullName)
+        var typeName = connection.GetType().FullName;
+        switch (typeName)   
         {
             default:
-                throw new Exception("Unsupported connection type!");
-                break;
+                throw new Exception($"Unsupported connection type: {typeName}");
         }
-        throw new Exception(connection.GetType().FullName);
     }
 }
