@@ -77,7 +77,7 @@ public class BaseSqlCommandFactory<T>(T connection) : ISqlCommandFactory<T> wher
         return Connection.CreateCommand(commandText, arguments);
     }
 
-    public IDbCommand CreateUpdateCommand(string tableName, Dictionary<string, object> key, Dictionary<string, object> columnsAndValues)
+    public IDbCommand CreateUpdateCommand(string tableName, Dictionary<string, object> key, Dictionary<string, object?> columnsAndValues)
     {
         var arguments = new CommandArguments(parameterNameQuoteKind, key, columnsAndValues);
         var quotedTableName = QuoteObjectName(tableName);

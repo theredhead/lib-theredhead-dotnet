@@ -17,6 +17,10 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "theredhead.data.sqlite", "t
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "theredhead.data.sqlite.tests", "theredhead.data.sqlite.tests\theredhead.data.sqlite.tests.csproj", "{21FB23D5-4300-481A-B8E9-96CE17855E4D}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "theredhead.data.sqlserver", "theredhead.data.sqlserver\theredhead.data.sqlserver.csproj", "{A6A30E1A-15E3-4C48-828F-6B5873F4E500}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "theredhead.data.sqlserver.tests", "theredhead.data.sqlserver.tests\theredhead.data.sqlserver.tests.csproj", "{2D480A29-E20F-45A0-997F-B4C319A4FD7E}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -51,6 +55,14 @@ Global
 		{21FB23D5-4300-481A-B8E9-96CE17855E4D}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{21FB23D5-4300-481A-B8E9-96CE17855E4D}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{21FB23D5-4300-481A-B8E9-96CE17855E4D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A6A30E1A-15E3-4C48-828F-6B5873F4E500}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A6A30E1A-15E3-4C48-828F-6B5873F4E500}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A6A30E1A-15E3-4C48-828F-6B5873F4E500}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A6A30E1A-15E3-4C48-828F-6B5873F4E500}.Release|Any CPU.Build.0 = Release|Any CPU
+		{2D480A29-E20F-45A0-997F-B4C319A4FD7E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2D480A29-E20F-45A0-997F-B4C319A4FD7E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2D480A29-E20F-45A0-997F-B4C319A4FD7E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2D480A29-E20F-45A0-997F-B4C319A4FD7E}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
