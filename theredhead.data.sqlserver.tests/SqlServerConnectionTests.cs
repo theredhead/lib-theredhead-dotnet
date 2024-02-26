@@ -1,13 +1,11 @@
 ﻿using Microsoft.Data.SqlClient;
 using System.Data;
-using theredhead.data.sql;
-using theredhead.data.sqlserver;
 
 namespace theredhead.data.sqlserver.tests;
 
 public class SqlServerConnectionTests
 {
-    private const string ConnectionString = "data source=localhost\\ZOCUDBSERVER;initial catalog=Zocu_MIR-5;integrated security=True;MultipleActiveResultSets=True; TrustServerCertificate=True";
+    private const string ConnectionString = "Data source=localhost; Initial catalog=test; User=sa; Password=PPC750cx; MultipleActiveResultSets=True; TrustServerCertificate=True";
 
     [SetUp]
     public void Setup()
@@ -69,14 +67,15 @@ public class SqlServerConnectionTests
         connection.Close();
         Assert.That(table, Is.InstanceOf<DataTable>());
     }
+
     [Test]
     public void CanSelectSomeDataThroughFactory() {
         var connection = new SqlConnection(ConnectionString);
         connection.Open();
-        var command = connection.GetCommandFactory().CreateSelectCommand("Reasons", 
+        var command = connection.GetCommandFactory().CreateSelectCommand("Hero", 
             new Dictionary<string, object>()
             {
-                {"Reason_Id", 42}
+                {"name", "steve"}
             }
         );
         var table = command.ExecuteDataTable();
