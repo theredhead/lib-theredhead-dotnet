@@ -1,0 +1,17 @@
+<Application xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             x:Class="theredhead.ui.shell.App"
+             xmlns:local="using:theredhead.ui.shell"
+             xmlns:sty="using:FluentAvalonia.Styling"
+             RequestedThemeVariant="Dark">
+             <!-- "Default" ThemeVariant follows system theme variant. "Dark" or "Light" are other available options. -->
+
+    <Application.DataTemplates>
+        <local:ViewLocator/>
+    </Application.DataTemplates>
+  
+    <Application.Styles>
+        <sty:FluentAvaloniaTheme PreferUserAccentColor="True" />
+        <StyleInclude Source="avares://theredhead.ui.shell/Assets/Icons.axaml" />
+    </Application.Styles>
+</Application>
