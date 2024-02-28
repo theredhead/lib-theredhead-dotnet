@@ -16,6 +16,6 @@
     <ProjectReference Include="..\theredhead.data\theredhead.data.csproj" />
   </ItemGroup>
   <ItemGroup>
-    <PackageReference Include="Microsoft.Data.SqlClient" Version="5.1.4" />
+    <PackageReference Include="Microsoft.Data.SqlClient" Version="5.2.0-preview5.24024.3" />
   </ItemGroup>
 </Project>

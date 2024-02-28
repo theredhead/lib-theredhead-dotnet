@@ -1,4 +1,6 @@
 ﻿using System;
+using System.Text;
+
 namespace theredhead.text
 {
     public class QuoteKind(string prefix, string suffix)
@@ -27,7 +29,7 @@ namespace theredhead.text
     }
 
 
-	static public class StringManipulation
+	public static class StringManipulation
 	{
         public static string Quoted(this string subject, QuoteKind quotekind)
         {
@@ -42,6 +44,27 @@ namespace theredhead.text
 		public static string JoinedBy(this IEnumerable<string> strings, string glue)
 		{
 			return string.Join(glue, strings);
+		}
+
+		public static string ReadToken(this string input, char[] characters, out string remainder)
+		{
+			var sb = new StringBuilder(input.Length);
+
+			foreach (var ch in input)
+			{
+				if (characters.Contains(ch))
+				{
+					sb.Append(ch);
+				}
+				else
+				{
+					break;
+				}
+			}
+
+			var result = sb.ToString();
+			remainder = input.Substring(result.Length);
+			return result;
 		}
 	}
 }

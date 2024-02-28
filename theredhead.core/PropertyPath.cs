@@ -41,25 +41,26 @@ public class PropertyPath
 
         private object? FollowIndex(object instance)
         {
+            throw new NotImplementedException();
             if (instance.GetType().GetMethod("get_Item") is { } method)
             {
                 var parameters = method.GetParameters();
                 if (parameters.Length == 1 && parameters[0] is { } parameter )
                 {
-                    return parameter.ParameterType switch
-                    {
-                        typeof(string) => FollowIndexByString(method, instance);
-                    }                    
+                    // return parameter.ParameterType switch
+                    // {
+                    //     typeof(string) => FollowIndexByString(method, instance);
+                    // }
                 }
             }
             
-            if (method.GetParameters().Lengthc==c)
-            return method?.Invoke(instance, Array.Empty<string>(Token)) ?? null;
+            // if (method.GetParameters().Lengthc==c)
+            // return method?.Invoke(instance, Array.Empty<string>(Token)) ?? null;
         }
 
         private object? FollowProperty(object instance)
         {
-            return instance.GetType().GetProperty(Token)
+            return instance.GetType().GetProperty(Token);
         }
     }
 
