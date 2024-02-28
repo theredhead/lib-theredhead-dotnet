@@ -4,13 +4,11 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
              xmlns:vm="using:theredhead.ui.shell.ViewModels"
-
              x:Class="theredhead.ui.shell.Views.HomePageView"
              x:DataType="vm:HomePageViewModel">
-    <Panel Background="Blue">
-        <StackPanel Orientation="Vertical"  VerticalAlignment="Center" HorizontalAlignment="Center">
-            <TextBlock>Home</TextBlock>
-            <PathIcon Data="{Binding Icon}"></PathIcon>
+    <Panel Background="#999999">
+        <StackPanel Orientation="Vertical"  VerticalAlignment="Center" HorizontalAlignment="Center" >
+            <Image Margin="32" Source="/Assets/avatar.png" Stretch="None"/>
         </StackPanel>
     </Panel>
 </UserControl>

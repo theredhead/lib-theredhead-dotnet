@@ -1,0 +1,21 @@
+<Styles xmlns="https://github.com/avaloniaui"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:controls="using:theredhead.ui.shell.Controls"
+        >
+    <Design.PreviewWith>
+        <controls:BitmapImage />
+    </Design.PreviewWith>
+
+    <Style Selector="controls|BitmapImage">
+        <!-- Set Defaults -->
+        <Setter Property="Template">
+            <ControlTemplate>
+                <Image x:DataType="controls:BitmapImage"
+                       DataContext="{RelativeSource Self}"
+                       Source="{Binding Image}"
+                       Width="{Binding BitmapWidth}"
+                       Height="{Binding BitmapHeight}"></Image>
+            </ControlTemplate>
+        </Setter>
+    </Style>
+</Styles>

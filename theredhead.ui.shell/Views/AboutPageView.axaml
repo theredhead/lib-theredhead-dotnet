@@ -4,8 +4,8 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
              x:Class="theredhead.ui.shell.Views.AboutPageView">
-    <Panel Background="Red">
-        <TextBlock>About</TextBlock>
+    <Panel>
+        <TextBlock VerticalAlignment="Center" HorizontalAlignment="Center">About</TextBlock>
     </Panel>
 
 </UserControl>
