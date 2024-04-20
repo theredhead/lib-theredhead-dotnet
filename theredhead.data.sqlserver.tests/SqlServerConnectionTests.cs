@@ -3,6 +3,7 @@ using System.Data;
 
 namespace theredhead.data.sqlserver.tests;
 
+[Ignore("SQL Server not available for testing atm.")]
 public class SqlServerConnectionTests
 {
     private const string ConnectionString = "Data source=localhost; Initial catalog=test; User=sa; Password=PPC750cx; MultipleActiveResultSets=True; TrustServerCertificate=True";
