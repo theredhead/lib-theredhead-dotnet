@@ -44,5 +44,15 @@ public class Tests
         Assert.That(success, Is.EqualTo(expectedSuccess));
         Assert.That(left, Is.EqualTo(expectedLeft));
         Assert.That(right, Is.EqualTo((expectedRight)));
+    } 
+
+    public void IStringRepresentable_WhenGivenValidString_DoesNotThrow(Type type, string value)
+    {
+        Assert.That(type.GetInterfaces().Contains(typeof(IStringRepresentable)));
+
+        Assert.DoesNotThrow(() =>
+        {
+            var _ = StringExtensions.As(value, type);
+        });
     }
 }

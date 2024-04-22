@@ -1,4 +1,4 @@
-using theredhead.core;
+using theredhead.common;
 
 namespace theredhead.common.tests;
 
@@ -33,7 +33,7 @@ public class EmailAddressTests
     {
         Assert.DoesNotThrow(() =>
         {
-            var _ =new EmailAddress(email);
+            var _ = new EmailAddress(email);
         });
     }
     [Test]
@@ -42,7 +42,7 @@ public class EmailAddressTests
     {
         Assert.Throws<InvalidEmailAddressException>(() =>
         {
-            var _ =new EmailAddress(email);
+            var _ = new EmailAddress(email);
         });
     }
 
@@ -52,5 +52,16 @@ public class EmailAddressTests
     {
         var emailAddress = new EmailAddress(email);
         Assert.That(emailAddress.ToString(), Is.EqualTo(email));
+    }
+
+    [Test]
+    [TestCaseSource(nameof(KnownGoodEmailAddresses))]
+    public void EmailAddress_Is_StringRepresentble (string email)
+    {
+        Assert.DoesNotThrow(() =>
+        {
+            var result = email.As<EmailAddress>();
+            Assert.That(result, Is.Not.Null);
+        });
     }
 }

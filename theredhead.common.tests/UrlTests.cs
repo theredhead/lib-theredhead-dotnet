@@ -1,4 +1,4 @@
-﻿using theredhead.core;
+﻿using theredhead.common;
 
 namespace theredhead.common.tests;
 
@@ -12,7 +12,7 @@ public class UrlTests
     {
         Assert.DoesNotThrow(() =>
         {
-            var _ = new Url.QueryString(queryString);
+            var _ = new QueryString(queryString);
         });
     }
 }

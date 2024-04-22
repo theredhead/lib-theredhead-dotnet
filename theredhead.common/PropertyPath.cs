@@ -1,7 +1,7 @@
 ﻿using System.Reflection;
 using theredhead.text;
 
-namespace theredhead.core;
+namespace theredhead.common;
 
 public class PropertyPathParser
 {

@@ -1,4 +1,4 @@
-﻿namespace theredhead.core;
+﻿namespace theredhead.common;
 
 public static class Sanity
 {

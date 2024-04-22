@@ -1,4 +1,4 @@
-using theredhead.core;
+using theredhead.common;
 
 namespace theredhead.common.tests;
 

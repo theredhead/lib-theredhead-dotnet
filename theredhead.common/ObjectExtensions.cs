@@ -1,4 +1,4 @@
-namespace theredhead.core;
+namespace theredhead.common;
 
 public static class ObjectExtensions
 {
@@ -8,3 +8,4 @@ public static class ObjectExtensions
         return subject;
     }
 }
+
