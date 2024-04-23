@@ -1,11 +1,14 @@
 ﻿namespace theredhead.common;
 
+[Experimental]
 public class Tag {
     public string Name { get; init; } = "Unnamed Tag";
 }
 
+[Experimental]
 public class TagList : List<Tag> {}
 
+[Experimental]
 public class ObjectTagger {
     public ObjectTagger() {}
 

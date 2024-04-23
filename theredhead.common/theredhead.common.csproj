@@ -11,4 +11,8 @@
       <ProjectReference Include="..\theredhead.text\theredhead.text.csproj" />
     </ItemGroup>
 
+    <ItemGroup>
+      <Folder Include="extensions/" />
+    </ItemGroup>
+
 </Project>

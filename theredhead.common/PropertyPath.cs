@@ -3,6 +3,7 @@ using theredhead.text;
 
 namespace theredhead.common;
 
+[Experimental]
 public class PropertyPathParser
 {
     public T GetValue<T>(object instance)
@@ -15,7 +16,7 @@ public class PropertyPathParser
         throw new NotImplementedException();
     }
 }
-
+[Experimental]
 public class PropertyPath
 {
     public enum StepType
@@ -27,7 +28,7 @@ public class PropertyPath
     public class Step
     {
         public StepType Type { get; init; }
-        public string Token { get; init; }
+        public string Token { get; init; } = "";
 
         object? Follow(object instance)
         {

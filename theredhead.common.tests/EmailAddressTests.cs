@@ -22,7 +22,10 @@ public class EmailAddressTests
 
     public static IEnumerable<string> ObviouslyNotEmailAddresses()
     {
+        // this null is on purpose, you nevr know what happens at runtime in the wild
+#pragma warning disable CS8603 // Possible null reference return.
         yield return null;
+#pragma warning restore CS8603 // Possible null reference return.
         yield return "";
         yield return "The quick brown fox, jumps over the lazy dog.";
     }
