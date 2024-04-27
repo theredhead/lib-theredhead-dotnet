@@ -1,4 +1,5 @@
 ﻿using System.Text;
+using System.Xml.Serialization;
 using Microsoft.CodeAnalysis;
 using Microsoft.CodeAnalysis.CSharp;
 using Microsoft.CodeAnalysis.CSharp.Syntax;
@@ -83,11 +84,39 @@ public class CopyableIncrementalGenerator : IIncrementalGenerator
 
         return sb.ToString();
     }
+}
 
 
+public abstract class DistilledSyntax
+{
+    public abstract void Load(SyntaxNode node, GeneratorSyntaxContext context);
+}
 
-    // private void Execute(SourceProductionContext context, (Compilation Left, ImmutableArray<ClassDeclarationSyntax> Right) tuple)
-    // {
-    //     throw new NotImplementedException();
-    // }
+public abstract class BaseIncrementalGenerator<T> : IIncrementalGenerator where T : DistilledSyntax, new()
+{
+    protected abstract bool IsNodeOfInterest(SyntaxNode node);{
+    protected virtual T Distill(SyntaxNode node, GeneratorSyntaxContext context) {
+        var distilled = new T();
+        distilled.Load(node, context);
+        return distilled;
+    }
+    protected abstract string GenerateCode(T @class);
+    
+    public void Initialize(IncrementalGeneratorInitializationContext context)
+    {
+        var provider = context.SyntaxProvider.CreateSyntaxProvider(
+            predicate: (node, _) => IsNodeOfInterest(node),
+            transform: (ctx, _) => Distill((ClassDeclarationSyntax)ctx.Node, ctx)
+        ).Where(m => m is not null);
+
+        context.RegisterSourceOutput(provider, Generate);
+    }
+
+    private void Generate(SourceProductionContext context, T blockInfo)
+    {
+        var fileNameHint = $"{blockInfo.Name}.{GetType().Name}.g.cs";
+        context.AddSource(fileNameHint, SourceText.From(
+            GenerateCode(blockInfo), Encoding.UTF8
+        ));
+    }
 }
