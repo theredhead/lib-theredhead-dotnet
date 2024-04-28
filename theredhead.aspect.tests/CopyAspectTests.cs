@@ -3,7 +3,9 @@ namespace theredhead.aspect.tests;
 
 [Copyable]
 public partial class CopyableTestHelper {
-
+    public int Id { get; set; } = 0;
+    public string Foo { get; set; } = "Foo";
+    public string Bar { get; set; } = "Bar";
 }
 
 [TestFixture]
