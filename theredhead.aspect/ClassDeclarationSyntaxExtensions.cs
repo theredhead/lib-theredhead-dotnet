@@ -16,7 +16,7 @@ public static class ClassDeclarationSyntaxExtensions
         /// <param name="cls">The class declaration syntax.</param>
         /// <returns><c>true</c> if the class declaration has the specified attribute; otherwise, <c>false</c>.</returns>
         public static bool HasAttribute<T>(this ClassDeclarationSyntax cls) where T : Attribute =>
-            cls.AttributeLists.Any(al => al.Attributes.Any(a => a.Name.ToString() == typeof(T).Name));
+            cls.AttributeLists.Any(al => al.Attributes.Any(a => typeof(T).Name.StartsWith(a.Name.ToString())));
 
         /// <summary>
         /// Determines whether the class declaration is partial.

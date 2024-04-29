@@ -5,7 +5,7 @@ using Microsoft.CodeAnalysis.Text;
 
 namespace theredhead.aspect;
 
-public abstract class BaseIncrementalGenerator<T> : IIncrementalGenerator where T : DistilledSyntax, new()
+public abstract class BaseIncrementalGenerator<T> where T : DistilledSyntax, new()
 {
     protected abstract bool IsNodeOfInterest(SyntaxNode node);
     protected virtual T Distill(SyntaxNode node, GeneratorSyntaxContext context) {

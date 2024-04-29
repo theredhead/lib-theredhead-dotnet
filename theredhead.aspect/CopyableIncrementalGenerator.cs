@@ -2,6 +2,9 @@
 using Microsoft.CodeAnalysis;
 using Microsoft.CodeAnalysis.CSharp;
 using Microsoft.CodeAnalysis.CSharp.Syntax;
+using Microsoft.CodeAnalysis.Text;
+using Microsoft.CodeAnalysis.VisualBasic.Syntax;
+using FieldDeclarationSyntax = Microsoft.CodeAnalysis.CSharp.Syntax.FieldDeclarationSyntax;
 
 namespace theredhead.aspect;
 
@@ -30,12 +33,39 @@ public class ClassInfo : DistilledSyntax
 }
 
 [Generator]
-public class CopyableIncrementalGenerator : BaseIncrementalGenerator<ClassInfo>
+public class CopyableIncrementalGenerator : IIncrementalGenerator
 {
-    protected override bool IsNodeOfInterest(SyntaxNode node) => 
+    private string ToolName => $"{GetType().Namespace}.{GetType().Name}";
+    private string ToolVersion => GetType().Assembly.ImageRuntimeVersion;
+
+    private bool IsNodeOfInterest(SyntaxNode node) =>
         node is ClassDeclarationSyntax cls && cls.IsPartial() && cls.HasAttribute<CopyableAttribute>();
 
-    protected override string GenerateCode(ClassInfo blockInfo)
+    public void Initialize(IncrementalGeneratorInitializationContext context)
+    {
+        var provider = context.SyntaxProvider.CreateSyntaxProvider(
+            predicate: (node, _) => IsNodeOfInterest(node),
+            transform: (ctx, _) => Distill((ClassDeclarationSyntax)ctx.Node, ctx)
+        ).Where(m => m is not null);
+
+        context.RegisterSourceOutput(provider, Generate);
+    }
+
+    private ClassInfo Distill(SyntaxNode node, GeneratorSyntaxContext context) {
+        var distilled = new ClassInfo();
+        distilled.Load(node, context);
+        return distilled;
+    }
+
+    private void Generate(SourceProductionContext context, ClassInfo blockInfo)
+    {
+        var fileNameHint = $"{blockInfo.Name}.{GetType().Name}.g.cs";
+        context.AddSource(fileNameHint, SourceText.From(
+            GenerateCode(blockInfo), Encoding.UTF8
+        ));
+    }
+
+    protected string GenerateCode(ClassInfo blockInfo)
     {
         var sb = new StringBuilder();
 
@@ -52,9 +82,10 @@ public class CopyableIncrementalGenerator : BaseIncrementalGenerator<ClassInfo>
         // lang=cs
         return $$"""
         // <generated />
+        #nullable enable
         namespace {{ blockInfo.Namespace }} {
-            [global::System.CodeDom.Compiler.GeneratedCode]
-            public partial class {blockInfo.Name} {
+            [global::System.CodeDom.Compiler.GeneratedCode("{{ ToolName }}", "{{ ToolVersion }}")]
+            public partial class {{ blockInfo.Name }} {
                 public {{ blockInfo.Name }} Copy({{ methodParametersText }}) {
                     var copy = new {{blockInfo.Name}}();
                     {{ propertyAssignmentsText }};
