@@ -1,12 +1,11 @@
-﻿using Microsoft.Data.SqlClient;
+namespace theredhead.data.mysql.tests;
+
+using MySql.Data.MySqlClient;
 using System.Data;
 
-namespace theredhead.data.sqlserver.tests;
-
-// [Ignore("SQL Server not available for testing atm.")]
-public class SqlServerConnectionTests
+public class MySqlConnectionTests
 {
-    private const string ConnectionString = "Data source=127.0.0.1; Initial catalog=msdb; User=sa; Password=$ql$3rv3r; MultipleActiveResultSets=True; TrustServerCertificate=True";
+    const string ConnectionString = "Server=localhost;Database=database;Uid=user;Pwd=password;";
 
     [SetUp]
     public void Setup()
@@ -16,7 +15,7 @@ public class SqlServerConnectionTests
     [Test]
     public void CanCreateAndOpenConnection()
     {
-        using var connection = new SqlConnection(ConnectionString);
+        using var connection = new MySqlConnection(ConnectionString);
         Assert.That(connection.State, Is.EqualTo(ConnectionState.Closed));
         connection.Open();
         Assert.That(connection.State, Is.EqualTo(ConnectionState.Open));
@@ -27,11 +26,9 @@ public class SqlServerConnectionTests
     [Test]
     public void CreateCommandAssignsConnectionAndCommandTextAndParameters()
     {
-        using var connection = new SqlConnection(ConnectionString);
-        connection.Open();
-
+        using var connection = new MySqlConnection(ConnectionString);
         var command = connection.CreateCommand(
-            "SELECT * FROM INFORMNATION_SCHEMA.TABLES WHERE TABLE_TYPE = 'base table'",
+            "select * from sqlite_master where type = 'table'",
             new CommandArguments("@",
                 new Dictionary<string, object>() {
                     { "answer", 42 }
@@ -40,7 +37,7 @@ public class SqlServerConnectionTests
         );
 
         Assert.That(command.Connection, Is.SameAs(connection), "Connection is different");
-        Assert.That(command.CommandText, Is.EqualTo("SELECT * FROM INFORMNATION_SCHEMA.TABLES WHERE TABLE_TYPE = 'base table'"), "CommandText is different");
+        Assert.That(command.CommandText, Is.EqualTo("select * from sqlite_master where type = 'table'"), "CommandText is different");
         Assert.That(command.Parameters.Count, Is.EqualTo(1), "Wrong number of parameters");
         if(command.Parameters[0] is IDbDataParameter parameter)
         {
@@ -49,36 +46,29 @@ public class SqlServerConnectionTests
         } else {
             Assert.Fail("Parameter is not of IDbDataParameterType");
         }
-        connection.Close();
     }
 
     [Test]
     public void GetCommandFactoryCreatesSqliteCommandFactory()
     {
-        var connection = new SqlConnection(ConnectionString);
+        var connection = new MySqlConnection(ConnectionString);
         var factory = connection.GetCommandFactory();
-        Assert.That(factory, Is.InstanceOf<SqlServerCommandFactory>());
+        Assert.That(factory, Is.InstanceOf<MySqlCommandFactory>());
     }
 
     [Test]
     public void CanSelectSomeData() {
-        var connection = new SqlConnection(ConnectionString);
+        var connection = new MySqlConnection(ConnectionString);
         connection.Open();
-        var table = connection.ExecuteDataTable("SELECT * FROM INFORMATION_SCHEMA.TABLES WHERE TABLE_CATALOG=DB_NAME()");
+        var table = connection.ExecuteDataTable("SELECT * FROM INFORMATION_SCHEMA.TABLES WHERE TABLE_SCHEMA=DATABASE()");
         connection.Close();
         Assert.That(table, Is.InstanceOf<DataTable>());
     }
-
     [Test]
     public void CanSelectSomeDataThroughFactory() {
-        var connection = new SqlConnection(ConnectionString);
+        var connection = new MySqlConnection(ConnectionString);
         connection.Open();
-        var command = connection.GetCommandFactory().CreateSelectCommand("Hero", 
-            new Dictionary<string, object>()
-            {
-                {"name", "steve"}
-            }
-        );
+        var command = connection.GetCommandFactory().CreateSelectCommand("TEST", null, ["TABLE_NAME"]);
         var table = command.ExecuteDataTable();
         connection.Close();
         Assert.That(table, Is.InstanceOf<DataTable>());
