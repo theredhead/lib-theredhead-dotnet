@@ -69,7 +69,7 @@ public class SqlServerConnectionTests
         Assert.That(table, Is.InstanceOf<DataTable>());
     }
 
-    [Test]
+    [Test, Ignore("We've not setup an initial database yet")]
     public void CanSelectSomeDataThroughFactory() {
         var connection = new SqlConnection(ConnectionString);
         connection.Open();
