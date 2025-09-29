@@ -31,12 +31,12 @@ namespace theredhead.text
 
 	public static class StringManipulation
 	{
-        public static string Quoted(this string subject, QuoteKind quotekind)
-        {
-            return quotekind.Quote(subject);
-        }
+		public static string Quoted(this string subject, QuoteKind quotekind)
+		{
+			return quotekind.Quote(subject);
+		}
 
-        public static string Quoted(this string subject, string prefix, string suffix)
+		public static string Quoted(this string subject, string prefix, string suffix)
 		{
 			return prefix + subject + suffix;
 		}
@@ -65,6 +65,26 @@ namespace theredhead.text
 			var result = sb.ToString();
 			remainder = input.Substring(result.Length);
 			return result;
+		}
+
+		public static IEnumerable<string> ToColumns(this string source, params int[] lengths)
+		{
+			var index = 0;
+			foreach (var length in lengths)
+			{
+				if (source.Length >= index + length)
+				{
+					yield return source.Substring(index, length);
+					index += length;
+				}
+			}
+		}
+
+		public static string ChompFront(this string source, int length, out string rest)
+		{
+			var front = source.Substring(0, length);
+			rest = source.Substring(length, source.Length - length);
+			return front;
 		}
 	}
 }

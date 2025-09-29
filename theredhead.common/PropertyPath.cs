@@ -42,6 +42,7 @@ public class PropertyPath
 
         private object? FollowIndex(object instance)
         {
+            
             throw new NotImplementedException();
             if (instance.GetType().GetMethod("get_Item") is { } method)
             {
@@ -55,7 +56,7 @@ public class PropertyPath
                 }
             }
             
-            // if (method.GetParameters().Lengthc==c)
+            // if (method.GetParameters().Length==c)
             // return method?.Invoke(instance, Array.Empty<string>(Token)) ?? null;
         }
 
@@ -65,7 +66,10 @@ public class PropertyPath
         }
     }
 
+    public string Path { get; private set; }
     public PropertyPath(string path)
     {
+        Path = path;
+        
     }
 }
