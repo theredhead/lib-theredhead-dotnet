@@ -3,6 +3,9 @@ namespace theredhead.data.mysql.tests;
 using MySql.Data.MySqlClient;
 using System.Data;
 
+
+[Category("Connected")]
+[TestFixture, Ignore("Database connection is required")]
 public class MySqlConnectionTests
 {
     const string ConnectionString = "Server=localhost;Database=database;Uid=user;Pwd=password;";
@@ -64,6 +67,7 @@ public class MySqlConnectionTests
         connection.Close();
         Assert.That(table, Is.InstanceOf<DataTable>());
     }
+    
     [Test, Ignore("We've not setup an initial database yet")]
     public void CanSelectSomeDataThroughFactory() {
         var connection = new MySqlConnection(ConnectionString);

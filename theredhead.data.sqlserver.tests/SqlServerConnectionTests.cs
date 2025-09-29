@@ -3,7 +3,8 @@ using System.Data;
 
 namespace theredhead.data.sqlserver.tests;
 
-// [Ignore("SQL Server not available for testing atm.")]
+[Category("Connected")]
+[TestFixture, Ignore("Database connection is required")]
 public class SqlServerConnectionTests
 {
     private const string ConnectionString = "Data source=127.0.0.1; Initial catalog=msdb; User=sa; Password=$ql$3rv3r; MultipleActiveResultSets=True; TrustServerCertificate=True";
