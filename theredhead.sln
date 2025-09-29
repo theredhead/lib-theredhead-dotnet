@@ -3,7 +3,7 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 25.0.1706.0
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "theredhead.remoting", "theredhead\theredhead.remoting.csproj", "{32947DC8-2A2E-4516-A109-4754EEF35CCB}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "theredhead.remoting", "theredhead.remoting\theredhead.remoting.csproj", "{32947DC8-2A2E-4516-A109-4754EEF35CCB}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "theredhead.remoting.tests", "theredhead.remoting.tests\theredhead.remoting.tests.csproj", "{A67B11DD-35F3-4AF8-9BAE-036372C1B973}"
 EndProject

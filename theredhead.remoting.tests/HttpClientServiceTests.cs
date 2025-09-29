@@ -1,6 +1,5 @@
-﻿using theredhead.remoting.http;
-using theredhead.remoting.serialization;
-using Newtonsoft.Json.Linq;
+﻿using Newtonsoft.Json.Linq;
+using theredhead.remoting.http;
 
 namespace theredhead.remoting.tests
 {

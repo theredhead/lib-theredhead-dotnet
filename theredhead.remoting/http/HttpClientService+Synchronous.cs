@@ -5,13 +5,11 @@ namespace theredhead.remoting.http
 {
 	public partial class HttpClientService
 	{
-        protected HttpResponseMessage PerformRequest(HttpRequestMessage request)
+        protected virtual HttpResponseMessage PerformRequest(HttpRequestMessage request)
         {
             Prepare(request);
-            using (var client = new HttpClient())
-            {
-                return client.Send(request);
-            }
+            using var client = new HttpClient();
+            return client.Send(request);
         }
 
 
