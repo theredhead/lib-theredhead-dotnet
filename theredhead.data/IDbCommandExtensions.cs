@@ -2,12 +2,8 @@ using System.Data;
 
 namespace theredhead.data;
 
-public static class IDbCommandExtensions {
-    public static int ExecuteNonQuery(this IDbCommand command)
-    {
-        return command.ExecuteNonQuery();
-    }
-
+public static class IDbCommandExtensions 
+{
     public static DataTable ExecuteDataTable(this IDbCommand command)
     {
         using var reader = command.ExecuteReader();

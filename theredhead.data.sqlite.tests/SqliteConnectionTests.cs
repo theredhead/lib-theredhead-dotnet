@@ -44,7 +44,7 @@ public class SqliteConnectionTests
             Assert.That(parameter.ParameterName, Is.EqualTo("@answer"));
             Assert.That(parameter.Value, Is.EqualTo(42));
         } else {
-            Assert.Fail("Parameter is not of IDbDataParameterType");
+            Assert.Fail("Parameter is not of IDbDataParameter Type");
         }
     }
 

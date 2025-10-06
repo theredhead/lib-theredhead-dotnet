@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Styles xmlns="https://github.com/avaloniaui"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:ui="clr-namespace:theredhead.avalonia.ui">
+
+  <!-- Default (Horizontal) -->
+  <Style Selector="ui|PaneSplitter">
+    <Setter Property="Template">
+      <ControlTemplate TargetType="ui:PaneSplitter">
+        <Grid x:Name="PART_Grid">
+          <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="{Binding FirstLength, RelativeSource={RelativeSource TemplatedParent}}" />
+            <ColumnDefinition Width="{Binding SplitterLength, RelativeSource={RelativeSource TemplatedParent}}" />
+            <ColumnDefinition Width="{Binding SecondLength, RelativeSource={RelativeSource TemplatedParent}}" />
+          </Grid.ColumnDefinitions>
+
+          <ContentPresenter Grid.Column="0" Content="{TemplateBinding PrimaryContent}" />
+          <GridSplitter Grid.Column="1"
+                        Classes="pane-splitter-horizontal"
+                        ShowsPreview="False"
+                        ResizeDirection="Columns"
+                        Background="Transparent"
+                        HorizontalAlignment="Stretch"
+                        VerticalAlignment="Stretch"
+                        Cursor="SizeWestEast" />
+          <ContentPresenter Grid.Column="2" Content="{TemplateBinding SecondaryContent}" />
+        </Grid>
+      </ControlTemplate>
+    </Setter>
+  </Style>
+
+  <!-- Orientation=Vertical -->
+  <Style Selector="ui|PaneSplitter[Orientation=Vertical]">
+    <Setter Property="Template">
+      <ControlTemplate TargetType="ui:PaneSplitter">
+        <Grid x:Name="PART_Grid">
+          <Grid.RowDefinitions>
+            <RowDefinition Height="{Binding FirstLength, RelativeSource={RelativeSource TemplatedParent}}" />
+            <RowDefinition Height="{Binding SplitterLength, RelativeSource={RelativeSource TemplatedParent}}" />
+            <RowDefinition Height="{Binding SecondLength, RelativeSource={RelativeSource TemplatedParent}}" />
+          </Grid.RowDefinitions>
+
+          <ContentPresenter Grid.Row="0" Content="{TemplateBinding PrimaryContent}" />
+          <GridSplitter Grid.Row="1"
+                        Classes="pane-splitter-vertical"
+                        ShowsPreview="False"
+                        ResizeDirection="Rows"
+                        Background="Transparent"
+                        HorizontalAlignment="Stretch"
+                        VerticalAlignment="Stretch"
+                        Cursor="SizeNorthSouth" />
+          <ContentPresenter Grid.Row="2" Content="{TemplateBinding SecondaryContent}" />
+        </Grid>
+      </ControlTemplate>
+    </Setter>
+  </Style>
+
+  <Style Selector="GridSplitter.pane-splitter-vertical">
+    <Setter Property="Background" Value="#EE000000"/> <!-- faint bar -->
+  </Style>
+
+  <Style Selector="GridSplitter.pane-splitter-horizontal">
+    <Setter Property="Background" Value="#EE000000"/>
+  </Style>
+</Styles>

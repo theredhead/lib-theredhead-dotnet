@@ -3,8 +3,7 @@
 namespace theredhead.text;
 
 public static class StringComparisonAdditions
-{
-
+{ 
     static public string StringByRemovingAllOccurrencesOf(this string s, char[] charactersToRemove)
     {
         var result = new StringBuilder();
@@ -28,7 +27,7 @@ public static class StringComparisonAdditions
 
     static public bool IsEquivalentToIgnoringWhitespace(this string s, string other)
     {
-        return IsEquivalentTo(s, other, new char[] { ' ', '\t', '\n' });
+        return IsEquivalentTo(s, other, [' ', '\t', '\n']);
     }
 }
 

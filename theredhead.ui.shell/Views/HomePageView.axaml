@@ -4,11 +4,27 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
              xmlns:vm="using:theredhead.ui.shell.ViewModels"
+             xmlns:ui="clr-namespace:theredhead.avalonia.ui;assembly=theredhead.avalonia.ui"
              x:Class="theredhead.ui.shell.Views.HomePageView"
              x:DataType="vm:HomePageViewModel">
-    <Panel Background="#999999">
-        <StackPanel Orientation="Vertical"  VerticalAlignment="Center" HorizontalAlignment="Center" >
-            <Image Margin="32" Source="/Assets/avatar.png" Stretch="None"/>
-        </StackPanel>
+    <Panel>
+        <ui:PaneSplitter>
+            <ui:PaneSplitter.PrimaryContent>
+
+                <!-- <ui:CodeEditor Text="{Binding Title}"></ui:CodeEditor> -->
+                <TextBox
+                    Text="{Binding Title}">
+                </TextBox>
+                
+            </ui:PaneSplitter.PrimaryContent>
+            <ui:PaneSplitter.SecondaryContent>
+                
+                <StackPanel Orientation="Vertical"  VerticalAlignment="Center" HorizontalAlignment="Center" >
+                    <Image Margin="32" Source="/Assets/avatar.png" Stretch="None"/>
+                </StackPanel>
+
+            </ui:PaneSplitter.SecondaryContent>
+        </ui:PaneSplitter>
+        
     </Panel>
 </UserControl>

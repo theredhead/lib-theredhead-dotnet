@@ -13,5 +13,7 @@
     <Application.Styles>
         <sty:FluentAvaloniaTheme PreferUserAccentColor="True" />
         <StyleInclude Source="avares://theredhead.ui.shell/Assets/Icons.axaml" />
+        <StyleInclude Source="avares://theredhead.avalonia.ui/Themes/Generic.axaml" />
+        
     </Application.Styles>
 </Application>

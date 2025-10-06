@@ -60,7 +60,7 @@
                     <ListBox.ItemTemplate>
                         <DataTemplate DataType="{x:Type support:MenuItem}">
                             <StackPanel Spacing="17" Orientation="Horizontal">
-                                <PathIcon Data="{Binding Icon}" Width="14" />
+                                <PathIcon Data="{Binding Icon}" Width="20" />
                                 <TextBlock VerticalAlignment="Center" Text="{Binding Label}"></TextBlock>
                             </StackPanel>
                         </DataTemplate>

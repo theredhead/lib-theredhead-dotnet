@@ -31,6 +31,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "theredhead.data.mysql", "th
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "theredhead.data.mysql.tests", "theredhead.data.mysql.tests\theredhead.data.mysql.tests.csproj", "{06C92709-19AC-43CC-9A43-F6E7B425BD2E}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "theredhead.avalonia.ui", "theredhead.avalonia.ui\theredhead.avalonia.ui.csproj", "{B3B2B07C-18CE-46F0-9982-9884F9712E20}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -93,6 +95,10 @@ Global
 		{06C92709-19AC-43CC-9A43-F6E7B425BD2E}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{06C92709-19AC-43CC-9A43-F6E7B425BD2E}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{06C92709-19AC-43CC-9A43-F6E7B425BD2E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B3B2B07C-18CE-46F0-9982-9884F9712E20}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B3B2B07C-18CE-46F0-9982-9884F9712E20}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B3B2B07C-18CE-46F0-9982-9884F9712E20}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B3B2B07C-18CE-46F0-9982-9884F9712E20}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

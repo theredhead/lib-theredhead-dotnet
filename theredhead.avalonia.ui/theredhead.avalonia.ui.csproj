@@ -1,16 +1,18 @@
-﻿<Project Sdk="Microsoft.NET.Sdk">
+<Project Sdk="Microsoft.NET.Sdk">
+
     <PropertyGroup>
-        <OutputType>WinExe</OutputType>
         <TargetFramework>net9.0</TargetFramework>
+        <ImplicitUsings>enable</ImplicitUsings>
         <Nullable>enable</Nullable>
         <BuiltInComInteropSupport>true</BuiltInComInteropSupport>
-        <ApplicationManifest>app.manifest</ApplicationManifest>
         <AvaloniaUseCompiledBindingsByDefault>true</AvaloniaUseCompiledBindingsByDefault>
     </PropertyGroup>
 
     <ItemGroup>
         <Folder Include="Models\"/>
         <AvaloniaResource Include="Assets\**"/>
+<!--        <AvaloniaXaml Remove="Themes\Generic.axaml" />-->
+        <AvaloniaResource Include="Themes\Generic.axaml" />
     </ItemGroup>
 
     <ItemGroup>
@@ -26,8 +28,4 @@
         <PackageReference Include="Microsoft.Extensions.DependencyInjection" Version="9.0.0-preview.1.24080.9" />
     </ItemGroup>
 
-
-    <ItemGroup>
-      <ProjectReference Include="..\theredhead.avalonia.ui\theredhead.avalonia.ui.csproj" />
-    </ItemGroup>
 </Project>
